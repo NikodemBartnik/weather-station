@@ -16,8 +16,9 @@ def index():
 @app.route('/submit', methods=['POST'])
 def submit():
     data = request.form.get('data')
+    temp = request.form.get('temperature')
     if data:
-        db.data_collection.insert_one({'data': data})
+        db.data_collection.insert_one({'data': data, 'temperature': temp})
     return index()
 
 if __name__ == '__main__':
