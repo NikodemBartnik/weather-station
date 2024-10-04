@@ -1,7 +1,7 @@
 version: '3'
 services:
   mongodb:
-    image: arm64v8/mongo
+    image: arm64v8/mongo  # ARM-compatible MongoDB
     container_name: mongodb
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
@@ -12,11 +12,12 @@ services:
       - mongo-data:/data/db
 
   mongo-express:
-    image: mongo-express
+    image: ealen/mongo-express  # ARM-compatible Mongo Express
     container_name: mongo-express
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: admin
       ME_CONFIG_MONGODB_ADMINPASSWORD: password
+      ME_CONFIG_MONGODB_SERVER: mongodb  # Ensure it connects to the MongoDB container
     ports:
       - "8081:8081"
     depends_on:
