@@ -1,26 +1,26 @@
-version: '3.8'
-
+version: '3'
 services:
-  mariadb:
-    image: arm64v8/mariadb  # ARM-compatible MariaDB image
-    container_name: mariadb
+  mongodb:
+    image: mongo
+    container_name: mongodb
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword  # Root password for MariaDB
-      MYSQL_DATABASE: mydatabase  # Name of a database to create on startup
-      MYSQL_USER: user  # Username for a non-root user
-      MYSQL_PASSWORD: userpassword  # Password for the non-root user
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
     ports:
-      - "3306:3306"  # Expose the default MariaDB port
+      - "27017:27017"
     volumes:
-      - mariadb_data:/var/lib/mysql  # Persistent storage for database data
+      - mongo-data:/data/db
 
-  adminer:
-    image: arm64v8/adminer  # Adminer image for the GUI
-    container_name: adminer
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: password
     ports:
-      - "8080:8080"  # Expose Adminer on port 8080
+      - "8081:8081"
     depends_on:
-      - mariadb  # Ensure MariaDB starts before Adminer
+      - mongodb
 
 volumes:
-  mariadb_data:
+  mongo-data:
