@@ -1,7 +1,7 @@
 version: '3'
 services:
   mongodb:
-    image: mongo
+    image: arm64v8/mongo
     container_name: mongodb
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
