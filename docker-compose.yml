@@ -1,8 +1,8 @@
 version: '3'
 services:
   mongodb:
-    image: mongo
-    container_name: arm64v8/mongo:4.4.18
+    image: arm64v8/mongo:4.4.18
+    container_name: mongodb
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: password
