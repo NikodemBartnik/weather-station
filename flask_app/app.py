@@ -11,7 +11,9 @@ db = client.project
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    # Get data from MongoDB and print in a table
+    data = db.data_collection.find()
+    return render_template('index.html', data=data)
 
 @app.route('/submit', methods=['POST'])
 def submit():

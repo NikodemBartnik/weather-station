@@ -12,5 +12,18 @@
         <input type="number" name="temperature" placeholder="Enter your temperature here" required>
         <button type="submit">Submit</button>
     </form>
+
+    <h1>Output Data</h1>
+    <table border="1">
+        <tr>
+            <th>Data</th>
+            <th>Temperature</th>
+        </tr>
+        {% for data in datas %}
+        <tr>
+            <td>{{ data.data }}</td>
+            <td>{{ data.temperature }}</td>
+        </tr>
+        {% endfor %}
 </body>
 </html>
