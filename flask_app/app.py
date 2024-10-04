@@ -5,7 +5,7 @@ import os
 app = Flask(__name__)
 
 # Set up MongoDB client
-mongo_uri = f"mongodb://{os.environ['MONGO_INITDB_ROOT_USERNAME']}:{os.environ['MONGO_INITDB_ROOT_PASSWORD']}@mongodb:27017/project"
+mongo_uri = f"mongodb://{os.environ['MONGO_INITDB_ROOT_USERNAME']}:{os.environ['MONGO_INITDB_ROOT_PASSWORD']}@mongodb:27017/project?authSource=admin"
 client = MongoClient(mongo_uri)
 db = client.project
 
